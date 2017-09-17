@@ -35,12 +35,7 @@ public class Cazador extends Figura{
     public Figura calcular(Objetivo presa){ 
         int unidady = 100;
         int unidadx = 100;
-        if(Math.abs(presa.x-this.x)<=unidadx/2){
-            if(Math.abs(presa.y-this.y)<=unidady/2){
-                unidady = Math.abs(Math.abs(presa.y)+50);
-                unidadx = Math.abs(Math.abs(presa.x)+50);
-            }
-        }
+        
         int pendiente = 0;
         Figura coordenadas=null;
         try{
@@ -66,7 +61,8 @@ public class Cazador extends Figura{
         
         if(coordenadas!=null){
             diferencia = coordenadas.x - this.x;
-        }if(Math.abs(this.y-presa.y)<=100){
+        }
+        if(Math.abs(this.y-presa.y)<=100){
             diferencia = 100+1;
         }
         if(Math.abs(diferencia)>100){
@@ -74,6 +70,38 @@ public class Cazador extends Figura{
                 coordenadas = new Figura(this.x+unidadx, Tools.redondear((pendiente*unidadx) + this.y), null);
             }else{
                 coordenadas = new Figura(this.x-unidadx, Tools.redondear((pendiente*(-unidadx)) + this.y), null);
+            }
+        }
+        if(Math.abs(presa.x-this.x)<=unidadx){
+            if(Math.abs(presa.y-this.y)<=unidady){
+               coordenadas = new Figura(presa.x, presa.y, null);
+            }
+        }
+        
+        if(Math.abs(presa.x-this.x)<=unidadx){
+            if(presa.y-this.y==50){
+                if(pendiente!=0){
+                    coordenadas=new Figura(Tools.redondear((unidady /pendiente)+this.x), this.y+unidady, null);
+                }else{
+                    coordenadas=new Figura(this.x, this.y+unidady,null);
+                }
+            }else{
+                if(presa.y-this.y==-50){
+                    if(pendiente!=0){
+                    coordenadas=new Figura(Tools.redondear((-unidady /pendiente)+this.x), this.y-unidady, null);
+                }else{
+                    coordenadas=new Figura(this.x, this.y-unidady,null);
+                }
+                }
+            }
+        }
+        if(Math.abs(presa.y-this.y)<= unidady){
+            if(presa.x-this.x==50){
+                coordenadas = new Figura(this.x+unidadx, Tools.redondear((pendiente*unidadx) + this.y), null);
+            }else{
+                if(presa.x-this.x==-50){
+                    coordenadas = new Figura(this.x-unidadx, Tools.redondear((pendiente*(-unidadx)) + this.y), null);
+                }
             }
         }
         return coordenadas;

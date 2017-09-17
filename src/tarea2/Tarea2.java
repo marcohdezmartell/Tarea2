@@ -61,7 +61,7 @@ public class Tarea2 extends JFrame{
             tarea.cuadricula.tiempo = tarea.tiempo;
             tarea.cuadricula.repaint();
             try {
-                Thread.sleep(50);
+                Thread.sleep(5);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Mapa.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -58,9 +58,10 @@ public class Objetivo extends Figura{
         
         if(coordenadas!=null){
             diferencia = coordenadas.x - this.x;
-        }if(Math.abs(this.y-cazador.y)<=100){
-            diferencia = unidad+1;
         }
+        /*if(Math.abs(this.y-cazador.y)<=50){
+            diferencia = unidad+1;
+        }*/
         if(Math.abs(diferencia)>unidad){
             if(cazador.x>this.x){
                 coordenadas = new Figura(this.x-unidad, Tools.redondear((pendiente*(-unidad)) + this.y), null);
